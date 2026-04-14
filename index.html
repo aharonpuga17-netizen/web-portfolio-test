@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Justin Canto - Creative Full-Stack Developer & 3D Web Enthusiast.">
+    <title>Justin Canto | 3D Developer Portfolio</title>
+    <!-- Import Google Fonts (Outfit) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Link to custom styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Import Map for Three.js via CDN -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Capa de fondo con flores minimalistas elegantes -->
+    <div class="floral-bg"></div>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">J.Canto</div>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#about">Sobre mí</a></li>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#contact" class="btn">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Foreground Content -->
+    <main class="content">
+        <!-- Hero Section -->
+        <section id="home" class="hero section">
+            <div class="glass-card main-card">
+                <h1>Hola, soy <span class="highlight">Justin Canto</span></h1>
+                <p class="subtitle">Creative Full-Stack Developer & 3D Enthusiast</p>
+                <p>Construyo experiencias digitales inmersivas que combinan tecnologías modernas, diseño impresionante y arte 3D.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn primary-btn">Ver trabajo</a>
+                    <a href="https://github.com" target="_blank" class="btn secondary-btn">GitHub</a>
+                </div>
+            </div>
+            
+            <div class="hero-3d-hint">
+                <p>Usa el mouse para interactuar con el modelo 3D</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section right-align">
+            <div class="glass-card">
+                <h2>El Arte del Desarrollo</h2>
+                <p>Con más de 3 años de experiencia en desarrollo web, me he especializado en la unión entre la interfaz y las matemáticas, impulsado por mi pasión por Blender y Three.js. Me encanta transformar ideas locas en código brillante.</p>
+                <br>
+                <h3>Stack Principal</h3>
+                <div class="skills-grid">
+                    <span>JavaScript/TS</span>
+                    <span>React/Vue</span>
+                    <span>Three.js / WebGL</span>
+                    <span>Blender / 3D Art</span>
+                    <span>Node.js</span>
+                    <span>CSS Avanzado</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section center-align">
+            <h2>Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="glass-card project-card">
+                    <div class="project-info">
+                        <h3>Nexus 3D Engine</h3>
+                        <p>Plataforma para previsualizar modelos 3D y componentes de automoción de forma interactiva desde el navegador. Optimización masiva de rendimiento.</p>
+                        <div class="tags"><span>Three.js</span><span>WebXR</span><span>React</span></div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="glass-card project-card">
+                    <div class="project-info">
+                        <h3>CyberStore</h3>
+                        <p>E-commerce con un configurador de productos en 3D en tiempo real. Los compradores pueden personalizar colores y piezas antes del checkout.</p>
+                        <div class="tags"><span>Next.js</span><span>Stripe</span><span>GLTF</span></div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="glass-card project-card">
+                    <div class="project-info">
+                        <h3>Holo UI Dashboard</h3>
+                        <p>Panel de administrador futurista, completamente responsivo y que simula el diseño de una interfaz holográfica.</p>
+                        <div class="tags"><span>SASS</span><span>D3.js</span><span>Framer</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section left-align">
+            <div class="glass-card">
+                <h2>¿Tienes un proyecto en mente?</h2>
+                <p>Siempre estoy abierto a conectar con otros devs o clientes que quieran ir más allá del 2D. Envíame un mensaje y creemos algo asombroso.</p>
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Este es un portal ficticio.')">
+                    <input type="text" placeholder="Tu Nombre" required>
+                    <input type="email" placeholder="Tu Correo" required>
+                    <textarea rows="4" placeholder="¿Cómo puedo ayudarte?" required></textarea>
+                    <button type="submit" class="btn primary-btn submit-btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2026 Justin Canto. Portafolio 3D.</p>
+        </footer>
+    </main>
+
+    <!-- Main Logic Script Inlined to avoid file:// CORS issues when double-clicking -->
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        // --- CONFIGURACIÓN BÁSICA DE LA ESCENA ---
+        const canvas = document.querySelector('#bg-canvas');
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.FogExp2(0xf5f5f7, 0.02); // Minimalist light grey fog
+        scene.background = null; // Canvas transparente para permitir ver el arte floral de fondo
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 0, 10);
+
+        const renderer = new THREE.WebGLRenderer({
+            canvas: canvas,
+            alpha: true,
+            antialias: true
+        });
+
+        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.2;
+
+        // --- GEOMETRÍA PLACEHOLDER PREMIUN ---
+        const geometry = new THREE.IcosahedronGeometry(3, 1);
+        const material = new THREE.MeshPhysicalMaterial({
+            color: 0xffffff, // Blanco puro 
+            emissive: 0x222222, // Brillo tenue
+            roughness: 0.05, // Muy pulido
+            metalness: 0.1, // Ligeramente metálico
+            transmission: 0.95, // Altamente transparente como cristal claro
+            thickness: 0.5,
+            clearcoat: 1.0,
+            clearcoatRoughness: 0.05
+        });
+
+        const mainObject = new THREE.Mesh(geometry, material);
+        scene.add(mainObject);
+
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 200;
+        const posArray = new Float32Array(particlesCount * 3);
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 40;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.04,
+            color: 0x000000, // Partículas negras sutiles
+            transparent: true,
+            opacity: 0.4,
+            blending: THREE.NormalBlending
+        });
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // --- CÓDIGO PARA TUS MODELOS DE BENDER ---
+        /* 
+        INSTRUCCIONES PARA AÑADIR MODELOS DE BLENDER (.GLB)
+        1. Exporta tu modelo desde Blender en formato glTF 2.0 (.glb)
+        2. Coloca el archivo en la misma carpeta que este index.html
+        3. Descomenta el código de abajo y entra el nombre de tu archivo.
+        */
+        
+        /*
+        const loader = new GLTFLoader();
+        loader.load(
+            'tu_modelo.glb', 
+            function (gltf) {
+                const blenderModel = gltf.scene;
+                blenderModel.scale.set(1.5, 1.5, 1.5);
+                scene.add(blenderModel);
+                mainObject.visible = false; // Ocultar placeholder
+            },
+            undefined,
+            function (error) { console.error('Error cargando el modelo de Blender:', error); }
+        );
+        */
+
+        // --- ILUMINACIÓN ---
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8); // Luz más clara 
+        scene.add(ambientLight);
+
+        const pointLight1 = new THREE.PointLight(0xffffff, 40, 100); // Luz blanca principal
+        pointLight1.position.set(5, 5, 5);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xe0e0e0, 20, 100); // Luz de relleno tenue
+        pointLight2.position.set(-5, -5, 5);
+        scene.add(pointLight2);
+
+        // --- CONTROLES Y SCROLL ---
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false;
+
+        let scrollY = window.scrollY;
+        let currentSection = 0;
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+            const newSection = Math.round(scrollY / window.innerHeight);
+            if (newSection !== currentSection) {
+                currentSection = newSection;
+                material.emissive.setHex(Math.random() > 0.5 ? 0x002255 : 0x220055);
+            }
+        });
+
+        const clock = new THREE.Clock();
+        let mouseX = 0;
+        let mouseY = 0;
+
+        // --- INTERACTIVIDAD CON RAYCASTER ---
+        const raycaster = new THREE.Raycaster();
+        const pointer = new THREE.Vector2(-2, -2); // Fuera de pantalla por defecto
+        
+        window.addEventListener('pointermove', (event) => {
+            // Parallax del fondo
+            mouseX = (event.clientX / window.innerWidth) - 0.5;
+            mouseY = (event.clientY / window.innerHeight) - 0.5;
+            
+            // Pointer normalizado para el Raycasting interactivo
+            pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+            pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        let isBouncing = false;
+        window.addEventListener('click', () => {
+            raycaster.setFromCamera(pointer, camera);
+            const intersects = raycaster.intersectObject(mainObject);
+            
+            if (intersects.length > 0 && !isBouncing) {
+                isBouncing = true;
+                
+                // Efecto "Flash" de cristal tintado brillante
+                const prevColor = material.color.getHex();
+                material.color.setHex(0xaaaaaa);
+                setTimeout(() => { material.color.setHex(prevColor); }, 300);
+
+                // Animación física interactiva de pulsación / latido
+                const initialScale = mainObject.scale.x;
+                let scaleUp = true;
+                let scaleProgress = 0;
+                
+                const bounceInterval = setInterval(() => {
+                    if (scaleUp) {
+                        scaleProgress += 0.08;
+                        mainObject.scale.setScalar(initialScale + scaleProgress);
+                        if (scaleProgress >= 0.4) scaleUp = false;
+                    } else {
+                        scaleProgress -= 0.04;
+                        mainObject.scale.setScalar(initialScale + scaleProgress);
+                        if (scaleProgress <= 0) {
+                            mainObject.scale.setScalar(initialScale);
+                            clearInterval(bounceInterval);
+                            isBouncing = false;
+                        }
+                    }
+                }, 16);
+            }
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = clock.getElapsedTime();
+            
+            mainObject.rotation.y += 0.005;
+            mainObject.rotation.x += 0.002;
+            
+            particlesMesh.rotation.y = -time * 0.05;
+            particlesMesh.rotation.x = time * 0.02;
+
+            camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+            camera.lookAt(scene.position);
+
+            // Cambiar cursor a "mano" si el usuario pasa por encima del objeto
+            raycaster.setFromCamera(pointer, camera);
+            if (raycaster.intersectObject(mainObject).length > 0) {
+                document.body.style.cursor = 'pointer';
+            } else {
+                document.body.style.cursor = 'default';
+            }
+
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        });
+    </script>
+</body>
+</html>

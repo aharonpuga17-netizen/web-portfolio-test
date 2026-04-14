@@ -1,0 +1,380 @@
+/* Global Style & Variables (Minimalist Theme) */
+:root {
+    --bg-color: #f5f5f7; /* Apple-like light grey */
+    --text-main: #1d1d1f;
+    --text-dim: #86868b;
+    --primary: #1d1d1f;
+    --primary-glow: rgba(0, 0, 0, 0.1);
+    --secondary: #555555;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    font-family: 'Outfit', -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+/* Patrón de puntos sutil de fondo */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -3; /* Detrás de todo */
+    pointer-events: none;
+    background-image: radial-gradient(rgba(0, 0, 0, 0.12) 1.5px, transparent 1.5px);
+    background-size: 35px 35px;
+}
+
+/* Fondo Floral Minimalista */
+.floral-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    pointer-events: none;
+    background-image: url('floral-bg.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.15; /* Sutil y muy elegante */
+    mix-blend-mode: multiply; /* Fusiona las líneas dibujadas con el fondo gris claro como si fuera tinta */
+}
+
+/* 3D Canvas Background */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: auto;
+}
+
+/* Typography elements & Reflective Animation */
+@keyframes reflectiveShine {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+}
+
+h1, h2, h3, .highlight {
+    /* Efecto reflectante muy notable */
+    background: linear-gradient(
+        110deg,
+        var(--text-main) 15%,
+        #ffffff 45%,
+        #ffffff 55%,
+        var(--text-main) 85%
+    );
+    background-size: 200% auto;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: reflectiveShine 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dim);
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+}
+
+.highlight {
+    font-weight: 700;
+    /* La animación se hereda de la regla agrupada arriba */
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: var(--secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 8px; /* Square/Minimalist borders rather than pill */
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px var(--primary-glow);
+    background: #000;
+}
+
+.secondary-btn {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--text-dim);
+}
+
+.secondary-btn:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    z-index: 100;
+    background: rgba(245, 245, 247, 0.8);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+.nav-links .btn {
+    padding: 0.5rem 1.2rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+/* Glassmorphism Panel - Minimalist version */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* Main Layout Setup */
+.content {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+    pointer-events: none;
+}
+
+.glass-card, .btn, .navbar, .contact-form input, .contact-form textarea {
+    pointer-events: auto;
+}
+
+.left-align .glass-card, .hero .main-card {
+    max-width: 650px;
+}
+
+.right-align {
+    align-items: flex-end;
+}
+
+.right-align .glass-card {
+    max-width: 650px;
+}
+
+.center-align {
+    align-items: center;
+}
+
+/* Hero specifics */
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.hero-3d-hint {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);}
+    40% {transform: translateX(-50%) translateY(-10px);}
+    60% {transform: translateX(-50%) translateY(-5px);}
+}
+
+/* Skills grid */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.skills-grid span {
+    padding: 0.6rem 1.2rem;
+    background: rgba(0,0,0,0.03);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    font-weight: 400;
+}
+
+/* Projects grid */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.project-card {
+    cursor: pointer;
+    padding: 2.5rem;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.tags {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+}
+
+.tags span {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    background: rgba(0,0,0,0.04);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+}
+
+/* Contact form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1rem;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 1.2rem;
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: var(--text-main);
+    box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+footer {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text-dim);
+    pointer-events: auto;
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1 { font-size: 3rem; }
+    .section { padding: 0 5%; }
+    .nav-links { display: none; }
+    .glass-card { padding: 2rem; }
+}
