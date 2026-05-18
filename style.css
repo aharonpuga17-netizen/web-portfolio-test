@@ -227,6 +227,46 @@ h2 {
     font-size: 0.95rem;
 }
 
+/* Modelado 3D */
+.model-text {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.model-text p {
+    margin-bottom: 15px;
+}
+
+.model-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#canvas-container {
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    background-color: var(--bg-color);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+#canvas-container:active {
+    cursor: grabbing;
+}
+
+.model-hint {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
 /* Projects */
 .projects-grid {
     display: flex;
@@ -318,7 +358,24 @@ footer {
 }
 
 /* Responsive */
+@media (max-width: 992px) {
+    .hero-container {
+        gap: 30px;
+    }
+    .hero-text h1 {
+        font-size: 3.5rem;
+    }
+    .hero-image img {
+        width: 280px;
+        height: 360px;
+    }
+}
+
 @media (max-width: 768px) {
+    .section {
+        padding: 60px 0;
+    }
+    
     .hero-container {
         flex-direction: column-reverse;
         text-align: center;
@@ -326,6 +383,11 @@ footer {
     
     .hero-text h1 {
         font-size: 2.8rem;
+    }
+    
+    .hero-text p {
+        font-size: 1rem;
+        margin-bottom: 30px;
     }
     
     .hero-image img {
@@ -357,5 +419,31 @@ footer {
     
     .contact-form .btn {
         align-self: center;
+        width: 100%;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+    
+    .hero-image img {
+        width: 200px;
+        height: 260px;
+        border-radius: 150px 150px 0 0;
+    }
+    
+    .skill-card {
+        padding: 30px 20px;
+    }
+    
+    .projects-grid {
+        gap: 20px;
     }
 }
