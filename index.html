@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -106,9 +107,40 @@
         </div>
     </section>
 
-    <section id="contacto" class="contact section">
+    <section id="contacto" class="contact section bg-alt">
         <h2>Contacto</h2>
         <div class="container">
+            <p class="contact-subtitle" style="text-align: center; color: var(--text-muted); margin-top: -30px; margin-bottom: 50px; max-width: 600px; margin-left: auto; margin-right: auto;">¿Tienes algún proyecto en mente o quieres colaborar? ¡Hablemos!</p>
+        </div>
+        
+        <div class="container contact-cards-container">
+            <div class="contact-card">
+                <h3>Redes Sociales</h3>
+                <p>Sígueme para ver mi trabajo y proceso creativo día a día.</p>
+                <div class="card-links">
+                    <a href="https://www.facebook.com/search/top?q=justin%20puga" target="_blank"><i class="fa-brands fa-facebook"></i> Justin Puga</a>
+                    <a href="https://www.instagram.com/justin.c_u" target="_blank"><i class="fa-brands fa-instagram"></i> @justin.c_u</a>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Correo</h3>
+                <p>Envíame un mensaje para propuestas formales o cotizaciones.</p>
+                <div class="card-links">
+                    <a href="mailto:aharonpuga17@gmail.com"><i class="fa-solid fa-envelope"></i> aharonpuga17@gmail.com</a>
+                </div>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Teléfono</h3>
+                <p>Si prefieres un trato más directo, no dudes en llamarme o escribirme.</p>
+                <div class="card-links">
+                    <a href="tel:9995677517"><i class="fa-solid fa-phone"></i> 999 567 7517</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" style="margin-top: 60px;">
             <form id="contact-form" class="contact-form">
                 <input type="text" id="name" placeholder="Tu Nombre" required>
                 <input type="email" id="email" placeholder="Tu Correo" required>
