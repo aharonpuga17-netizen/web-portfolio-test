@@ -113,6 +113,59 @@ if (container) {
     plane.receiveShadow = true;
     scene.add(plane);
 
+    // -- INTERACCIONES PROGRAMADAS --
+    
+    // 1. Animación del modelo (Rotación Automática)
+    const btnAnimacion = document.getElementById('btn-animacion');
+    if (btnAnimacion) {
+        btnAnimacion.addEventListener('click', () => {
+            controls.autoRotate = !controls.autoRotate;
+            controls.autoRotateSpeed = 2.0;
+            if (controls.autoRotate) {
+                btnAnimacion.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar Rotación';
+                btnAnimacion.style.backgroundColor = 'var(--primary-color)';
+                btnAnimacion.style.color = '#fff';
+            } else {
+                btnAnimacion.innerHTML = '<i class="fa-solid fa-rotate"></i> Rotación Automática';
+                btnAnimacion.style.backgroundColor = 'transparent';
+                btnAnimacion.style.color = 'var(--text-color)';
+            }
+        });
+    }
+
+    // 2. Ajuste de Iluminación (Cambio de color de luz)
+    const btnLuz = document.getElementById('btn-luz');
+    const coloresLuz = [0xffffff, 0xffa500, 0x00ff00, 0x0000ff, 0xff00ff];
+    let colorLuzIndex = 0;
+    if (btnLuz) {
+        btnLuz.addEventListener('click', () => {
+            colorLuzIndex = (colorLuzIndex + 1) % coloresLuz.length;
+            directionalLight.color.setHex(coloresLuz[colorLuzIndex]);
+            btnLuz.style.borderColor = '#' + coloresLuz[colorLuzIndex].toString(16).padStart(6, '0');
+        });
+    }
+
+    // 3. Cambio de tema Claro/Oscuro
+    const btnTema = document.getElementById('btn-tema');
+    if (btnTema) {
+        btnTema.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            if (isDark) {
+                btnTema.innerHTML = '<i class="fa-solid fa-sun"></i> Modo Claro';
+                scene.background = new THREE.Color('#1a1a1a');
+                ambientLight.intensity = 0.1;
+                directionalLight.intensity = 0.8;
+            } else {
+                btnTema.innerHTML = '<i class="fa-solid fa-moon"></i> Modo Oscuro';
+                scene.background = new THREE.Color('#fcfbf9');
+                ambientLight.intensity = 0.4;
+                directionalLight.intensity = 1.2;
+            }
+        });
+    }
+
     // 9. Loop de Renderizado
     function animate() {
         requestAnimationFrame(animate);
