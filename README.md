@@ -10,11 +10,11 @@ This portfolio is not just a static webpage; it's an interactive experience. It 
 
 - **Interactive 2D Animations:** Features a dynamic login interface where an animated bear reacts in real-time to user input.
 
-  ![Interactive Login Bear](./assets/login-animation.gif)
+  ![Interactive Login Bear](assets/login-animation.gif)
 
 - **Web-Based 3D Viewing:** Integrates custom 3D models (exported from Blender as `.glb`) directly into the browser using `Three.js` and `<model-viewer>`, complete with lighting controls, auto-rotation, and dark mode toggles.
 
-  ![3D Model Viewer Demo](./assets/3d-model-demo.gif)
+  ![3D Model Viewer Demo](assets/3d-model-demo.gif)
 
 - **Responsive Design:** A beautiful, fully responsive layout built from scratch with custom CSS and modern typography.
 - **Smooth Navigation:** A sticky header with smooth scrolling for a seamless user experience.
