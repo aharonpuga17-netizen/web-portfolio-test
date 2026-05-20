@@ -18,11 +18,11 @@ This portfolio is not just a static webpage; it's an interactive experience. It 
 
 - **Responsive Design:** A beautiful, fully responsive layout built from scratch with custom CSS and modern typography.
 
-  ![Responsive Design](assets/vistazo.gif)
+  ![Responsive Design](assets/responsivo.gif)
 
 - **Smooth Navigation:** A sticky header with smooth scrolling for a seamless user experience.
 
-  ![Smooth Navigation](assets/responsivo.gif)
+  ![Smooth Navigation](assets/vistazo.gif)
 
 ## 🛠️ Technologies & Tools Used
 
