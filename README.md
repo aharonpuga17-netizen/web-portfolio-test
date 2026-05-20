@@ -17,7 +17,12 @@ This portfolio is not just a static webpage; it's an interactive experience. It 
   ![3D Model Viewer Demo](assets/3d-model-demo.gif)
 
 - **Responsive Design:** A beautiful, fully responsive layout built from scratch with custom CSS and modern typography.
+
+  ![Responsive Design](assets/vistazo.gif)
+
 - **Smooth Navigation:** A sticky header with smooth scrolling for a seamless user experience.
+
+  ![Smooth Navigation](assets/responsivo.gif)
 
 ## 🛠️ Technologies & Tools Used
 
